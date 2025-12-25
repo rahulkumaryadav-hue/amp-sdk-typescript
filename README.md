@@ -30,9 +30,9 @@ const client = new AmpSDK({
   environment: 'environment_1', // or 'production' | 'environment_2'; defaults to 'production'
 });
 
-const response = await client.v1.telemetry.send();
+const telemetry = await client.v1.telemetry.create();
 
-console.log(response.accepted);
+console.log(telemetry.accepted);
 ```
 
 ### Request & Response types
@@ -48,7 +48,7 @@ const client = new AmpSDK({
   environment: 'environment_1', // or 'production' | 'environment_2'; defaults to 'production'
 });
 
-const response: AmpSDK.V1.TelemetrySendResponse = await client.v1.telemetry.send();
+const telemetry: AmpSDK.V1.TelemetryCreateResponse = await client.v1.telemetry.create();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -61,7 +61,7 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const response = await client.v1.telemetry.send().catch(async (err) => {
+const telemetry = await client.v1.telemetry.create().catch(async (err) => {
   if (err instanceof AmpSDK.APIError) {
     console.log(err.status); // 400
     console.log(err.name); // BadRequestError
@@ -101,7 +101,7 @@ const client = new AmpSDK({
 });
 
 // Or, configure per-request:
-await client.v1.telemetry.send({
+await client.v1.telemetry.create({
   maxRetries: 5,
 });
 ```
@@ -118,7 +118,7 @@ const client = new AmpSDK({
 });
 
 // Override per-request:
-await client.v1.telemetry.send({
+await client.v1.telemetry.create({
   timeout: 5 * 1000,
 });
 ```
@@ -141,13 +141,13 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new AmpSDK();
 
-const response = await client.v1.telemetry.send().asResponse();
+const response = await client.v1.telemetry.create().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: response, response: raw } = await client.v1.telemetry.send().withResponse();
+const { data: telemetry, response: raw } = await client.v1.telemetry.create().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(response.accepted);
+console.log(telemetry.accepted);
 ```
 
 ### Logging
@@ -227,7 +227,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.v1.telemetry.send({
+client.v1.telemetry.create({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',
