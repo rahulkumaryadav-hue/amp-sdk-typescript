@@ -9,8 +9,8 @@ const client = new AmpSDK({
 
 describe('resource health', () => {
   // Prism tests are disabled
-  test.skip('checkStatus', async () => {
-    const responsePromise = client.v1.health.checkStatus();
+  test.skip('retrieve', async () => {
+    const responsePromise = client.v1.health.retrieve();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

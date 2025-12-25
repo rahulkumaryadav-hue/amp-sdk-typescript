@@ -6,45 +6,38 @@ import { RequestOptions } from '../../internal/request-options';
 
 export class Health extends APIResource {
   /**
-   * Check if the ingestion service is healthy and can accept traffic.
+   * Check if the AMP ingestion service is healthy and can accept requests.
    *
    * @example
    * ```ts
-   * const response = await client.v1.health.checkStatus();
+   * const health = await client.v1.health.retrieve();
    * ```
    */
-  checkStatus(options?: RequestOptions): APIPromise<HealthCheckStatusResponse> {
+  retrieve(options?: RequestOptions): APIPromise<HealthRetrieveResponse> {
     return this._client.get('/api/v1/health', options);
   }
 }
 
 /**
- * Service health status
+ * Service health status (simple - no internal infrastructure details)
  */
-export interface HealthCheckStatusResponse {
+export interface HealthRetrieveResponse {
   /**
-   * Individual component health
+   * Service health status
    */
-  checks?: HealthCheckStatusResponse.Checks;
+  status: 'healthy' | 'unhealthy';
 
-  status?: 'healthy' | 'degraded' | 'unhealthy';
-
-  timestamp?: string;
-}
-
-export namespace HealthCheckStatusResponse {
   /**
-   * Individual component health
+   * Response timestamp
    */
-  export interface Checks {
-    clickhouse?: 'healthy' | 'unhealthy';
+  timestamp: string;
 
-    kafka?: 'healthy' | 'unhealthy';
-
-    mongodb?: 'healthy' | 'unhealthy';
-  }
+  /**
+   * Service version
+   */
+  version?: string;
 }
 
 export declare namespace Health {
-  export { type HealthCheckStatusResponse as HealthCheckStatusResponse };
+  export { type HealthRetrieveResponse as HealthRetrieveResponse };
 }
