@@ -9,8 +9,8 @@ const client = new AmpSDK({
 
 describe('resource telemetry', () => {
   // Prism tests are disabled
-  test.skip('send', async () => {
-    const responsePromise = client.v1.telemetry.send({});
+  test.skip('create', async () => {
+    const responsePromise = client.v1.telemetry.create({});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

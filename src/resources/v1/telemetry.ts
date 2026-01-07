@@ -20,7 +20,7 @@ export class Telemetry extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.v1.telemetry.send({
+   * const telemetry = await client.v1.telemetry.create({
    *   traces: [
    *     {
    *       trace_id: 'trace-abc-001',
@@ -50,7 +50,7 @@ export class Telemetry extends APIResource {
    * });
    * ```
    */
-  send(params: TelemetrySendParams, options?: RequestOptions): APIPromise<TelemetrySendResponse> {
+  create(params: TelemetryCreateParams, options?: RequestOptions): APIPromise<TelemetryCreateResponse> {
     const { format, ...body } = params;
     return this._client.post('/api/v1/telemetry', { query: { format }, body, ...options });
   }
@@ -59,11 +59,11 @@ export class Telemetry extends APIResource {
 /**
  * Response after telemetry batch submission
  */
-export interface TelemetrySendResponse {
+export interface TelemetryCreateResponse {
   /**
    * Count of accepted items
    */
-  accepted: TelemetrySendResponse.Accepted;
+  accepted: TelemetryCreateResponse.Accepted;
 
   /**
    * Processing duration in milliseconds
@@ -73,7 +73,7 @@ export interface TelemetrySendResponse {
   /**
    * Count of rejected items
    */
-  rejected: TelemetrySendResponse.Rejected;
+  rejected: TelemetryCreateResponse.Rejected;
 
   /**
    * Overall batch status
@@ -83,7 +83,7 @@ export interface TelemetrySendResponse {
   /**
    * Storage statistics
    */
-  stored: TelemetrySendResponse.Stored;
+  stored: TelemetryCreateResponse.Stored;
 
   /**
    * Response timestamp
@@ -101,7 +101,7 @@ export interface TelemetrySendResponse {
   message?: string;
 }
 
-export namespace TelemetrySendResponse {
+export namespace TelemetryCreateResponse {
   /**
    * Count of accepted items
    */
@@ -125,23 +125,18 @@ export namespace TelemetrySendResponse {
    */
   export interface Stored {
     /**
-     * Records stored in ClickHouse
+     * Number of records queued for processing
      */
-    clickhouse?: number;
+    queued?: number;
 
     /**
-     * Messages published to Kafka
+     * Number of records stored
      */
-    kafka?: number;
-
-    /**
-     * Messages queued for retry
-     */
-    kafkaRetryQueued?: number;
+    records?: number;
   }
 }
 
-export interface TelemetrySendParams {
+export interface TelemetryCreateParams {
   /**
    * Query param: Telemetry format (defaults to otel)
    */
@@ -150,15 +145,15 @@ export interface TelemetrySendParams {
   /**
    * Body param: Array of OTEL traces (max 100 per batch)
    */
-  traces?: Array<TelemetrySendParams.Trace>;
+  traces?: Array<TelemetryCreateParams.Trace>;
 
   /**
    * Body param: Array of conversation transcripts (max 100 per batch)
    */
-  transcripts?: Array<TelemetrySendParams.Transcript>;
+  transcripts?: Array<TelemetryCreateParams.Transcript>;
 }
 
-export namespace TelemetrySendParams {
+export namespace TelemetryCreateParams {
   /**
    * OTEL trace containing one or more spans
    */
@@ -370,7 +365,7 @@ export namespace TelemetrySendParams {
 
 export declare namespace Telemetry {
   export {
-    type TelemetrySendResponse as TelemetrySendResponse,
-    type TelemetrySendParams as TelemetrySendParams,
+    type TelemetryCreateResponse as TelemetryCreateResponse,
+    type TelemetryCreateParams as TelemetryCreateParams,
   };
 }
