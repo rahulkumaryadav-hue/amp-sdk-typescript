@@ -1,12 +1,12 @@
 {
   "name": "amp-sdk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The official TypeScript library for the Amp SDK API",
   "author": "Amp SDK <support@kore.ai>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
-  "repository": "github:stainless-sdks/amp-sdk-typescript",
+  "repository": "github:rahulkumaryadav-hue/amp-sdk-typescript",
   "license": "MIT",
   "packageManager": "pnpm@10.24.0",
   "files": [

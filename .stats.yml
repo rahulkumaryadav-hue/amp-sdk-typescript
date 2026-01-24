@@ -1,4 +1,4 @@
 configured_endpoints: 2
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/kore-ai%2Famp-sdk-e076d878213829af6a8bdcd2638c375507e1fbbb4d5c06fbb34d7b0771d2fc42.yml
-openapi_spec_hash: 44f5fa7c66d71de36767e686d6e755dc
-config_hash: 6e67ff9fd0427c7045e0c0af8ba479a8
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/kore-ai%2Famp-sdk-f61f9dc44d2782a4ecc9337a85325b02603ca2eb9726fdd5b3d282c6f7d64535.yml
+openapi_spec_hash: 43c6c571be7235ad3d166abebeec5e80
+config_hash: 3e88417e2c9ddce8269f932603484467
