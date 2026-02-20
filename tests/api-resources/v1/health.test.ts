@@ -8,7 +8,7 @@ const client = new AmpSDK({
 });
 
 describe('resource health', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.v1.health.retrieve();
     const rawResponse = await responsePromise.asResponse();
