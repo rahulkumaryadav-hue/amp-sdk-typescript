@@ -2,9 +2,9 @@
 
 import { APIResource } from '../../core/resource';
 import * as HealthAPI from './health';
-import { Health, HealthCheckStatusResponse } from './health';
+import { Health, HealthRetrieveResponse } from './health';
 import * as TelemetryAPI from './telemetry';
-import { Telemetry, TelemetrySendParams, TelemetrySendResponse } from './telemetry';
+import { Telemetry, TelemetryCreateParams, TelemetryCreateResponse } from './telemetry';
 
 export class V1 extends APIResource {
   telemetry: TelemetryAPI.Telemetry = new TelemetryAPI.Telemetry(this._client);
@@ -17,9 +17,9 @@ V1.Health = Health;
 export declare namespace V1 {
   export {
     Telemetry as Telemetry,
-    type TelemetrySendResponse as TelemetrySendResponse,
-    type TelemetrySendParams as TelemetrySendParams,
+    type TelemetryCreateResponse as TelemetryCreateResponse,
+    type TelemetryCreateParams as TelemetryCreateParams,
   };
 
-  export { Health as Health, type HealthCheckStatusResponse as HealthCheckStatusResponse };
+  export { Health as Health, type HealthRetrieveResponse as HealthRetrieveResponse };
 }
