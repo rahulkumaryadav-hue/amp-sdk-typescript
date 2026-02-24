@@ -60,7 +60,7 @@ $ yarn link amp-sdk
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global amp-sdk
+$ pnpm link --global amp-sdk
 ```
 
 ## Running tests
