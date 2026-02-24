@@ -8,7 +8,7 @@
   "type": "commonjs",
   "repository": "github:rahulkumaryadav-hue/amp-sdk-typescript",
   "license": "MIT",
-  "packageManager": "pnpm@10.27.0",
+  "packageManager": "pnpm@10.30.1",
   "files": [
     "**/*"
   ],
